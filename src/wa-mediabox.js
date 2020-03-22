@@ -356,7 +356,7 @@
 	 * Set media into container
 	 */
 	WAMediaBox_Gallery.prototype.setMedia = function (type, src, title, width, height, reloadSec) {
-		console.log(title);
+		console.log('setMedia');
 
 
 		if (!this.opened) return;
@@ -403,6 +403,17 @@
 
 			mediaEl.src = src;
 
+			if (reloadSec && reloadSec > 0) {
+				self.currentRefreshInterval = setInterval(function () {
+					console.log('refresh');
+					var ts = (new Date()).getTime();
+					if (mediaEl.src) {
+						var add = src.indexOf('?') >= 0 ? "&myts=" + ts : "?myts=" + ts;
+						mediaEl.src = src + add;
+					}
+				}, reloadSec * 1000);
+			}
+
 		} else {
 
 			//Resize
@@ -444,17 +455,6 @@
 
 			}, 550);
 		});
-
-		if (reloadSec && reloadSec > 0) {
-			self.currentRefreshInterval = setInterval(function () {
-				console.log('refresh');
-				var ts = (new Date()).getTime();
-				if (mediaEl.src) {
-					var add = src.indexOf('?') >= 0 ? "&myts=" + ts : "?myts=" + ts;
-					mediaEl.src = src + add;
-				}
-			}, reloadSec * 1000);
-		}
 	};
 
 	/*
