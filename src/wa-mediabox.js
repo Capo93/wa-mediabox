@@ -648,7 +648,7 @@
 	//Bind lightbox elements
 	window.addEventListener("load", function () {
 
-		window.WAMediaBox.bindAll(document.body, 2);
+		window.WAMediaBox.bindAll(document.body);
 
 	});
 
