@@ -383,7 +383,7 @@
 
 			mediaEl.addEventListener("load", function () {
 
-				if (self.loaded)
+				if (self.loaded || (self.current != index))
 					return;
 
 				console.log('load current', self.current, index);
@@ -424,7 +424,7 @@
 		//Wait for load
 		mediaEl.addEventListener("load", function () {
 
-			if (self.loaded)
+			if (self.loaded || (self.current != index))
 				return;
 			console.log('load media', mediaEl);
 
