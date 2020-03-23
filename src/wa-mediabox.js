@@ -355,9 +355,8 @@
 	/*
 	 * Set media into container
 	 */
-	WAMediaBox_Gallery.prototype.setMedia = function (type, src, title, width, height, reloadSec) {
+	WAMediaBox_Gallery.prototype.setMedia = function (index, type, src, title, width, height, reloadSec) {
 		console.log('setMedia');
-
 
 		if (!this.opened) return;
 
@@ -387,7 +386,7 @@
 				if (self.loaded)
 					return;
 
-				console.log('load img', self);
+				console.log('load current', self.current, index);
 
 
 				self.containerWidth = mediaEl.width;
@@ -429,6 +428,7 @@
 				return;
 			console.log('load media', mediaEl);
 
+
 			setTimeout(function () {
 
 				//Set title
@@ -461,6 +461,10 @@
 	 * Load media at index
 	 */
 	WAMediaBox_Gallery.prototype.loadMedia = function (index) {
+		console.log(index);
+		console.log(this.loaded);
+
+
 
 		if (!this.opened) return;
 		if (index == this.current) return;
@@ -477,6 +481,7 @@
 		var load = function () {
 
 			self.setMedia(
+				index,
 				self.mediaList[index].type,
 				self.mediaList[index].src,
 				self.mediaList[index].title,
@@ -636,6 +641,9 @@
 	WAMediaBox.prototype.bindAll = function (parentEl, reloadSec) {
 
 		var elements = parentEl.querySelectorAll("a[data-mediabox]");
+
+		console.log('bindAll', elements);
+
 
 		for (var i = 0; i < elements.length; i++)
 			this.bind(elements.item(i), reloadSec);
