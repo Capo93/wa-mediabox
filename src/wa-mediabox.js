@@ -642,9 +642,6 @@
 
 		var elements = parentEl.querySelectorAll("a[data-mediabox]");
 
-		console.log('bindAll', elements);
-
-
 		for (var i = 0; i < elements.length; i++)
 			this.bind(elements.item(i), reloadSec);
 
