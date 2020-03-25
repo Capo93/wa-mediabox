@@ -356,8 +356,6 @@
 	 * Set media into container
 	 */
 	WAMediaBox_Gallery.prototype.setMedia = function (index, type, src, title, width, height, reloadSec) {
-		console.log('setMedia');
-
 		if (!this.opened) return;
 
 		var self = this;
@@ -385,9 +383,6 @@
 
 				if (self.loaded || (self.current != index))
 					return;
-
-				console.log('load current', self.current, index);
-
 
 				self.containerWidth = mediaEl.width;
 				self.containerHeight = mediaEl.height;
@@ -426,8 +421,6 @@
 
 			if (self.loaded || (self.current != index))
 				return;
-			console.log('load media', mediaEl);
-
 
 			setTimeout(function () {
 
@@ -447,7 +440,6 @@
 
 		if (type == "image" && reloadSec && reloadSec > 0) {
 			self.currentRefreshInterval = setInterval(function () {
-				console.log('refresh');
 				var ts = (new Date()).getTime();
 				if (mediaEl.src) {
 					var add = src.indexOf('?') >= 0 ? "&myts=" + ts : "?myts=" + ts;
@@ -461,10 +453,6 @@
 	 * Load media at index
 	 */
 	WAMediaBox_Gallery.prototype.loadMedia = function (index) {
-		console.log(index);
-		console.log(this.loaded);
-
-
 
 		if (!this.opened) return;
 		if (index == this.current) return;
